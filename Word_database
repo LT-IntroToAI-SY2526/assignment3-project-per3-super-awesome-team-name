@@ -1,0 +1,6 @@
+#data 
+from typing import List, Tuple
+
+wordle_db: List[Tuple[str, int]] = [
+
+]
