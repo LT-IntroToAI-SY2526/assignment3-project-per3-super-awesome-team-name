@@ -12,6 +12,6 @@ from typing import List, Tuple
 #cooking complexity (how many steps),
 #what type of meal (b,l,d),
 #event to cook this meal for]
-wordle_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
+recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
 
 ]
