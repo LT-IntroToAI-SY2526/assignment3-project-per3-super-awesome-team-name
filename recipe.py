@@ -12,7 +12,7 @@ from typing import List, Tuple
 #cooking complexity (how many steps),
 #what type of meal  (breakfast, lunch, dinner, dessert),
 #event to cook this meal for]
-wordle_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
+recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
     (
         "melted brie toast with macerated berries",
         ["3 cups mixed berries, divided", 
