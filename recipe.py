@@ -10,7 +10,7 @@ from typing import List, Tuple
 #serving size,
 #cooking time,
 #cooking complexity (how many steps),
-#what type of meal (b,l,d),
+#what type of meal (breakfast, lunch, dinner, dessert),
 #event to cook this meal for]
 recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
 

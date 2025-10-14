@@ -5,7 +5,7 @@
 # What dish had a serving size of _? (serving size)
 # What dish has a cooking time under/over _? (Cooking time)
 # What dish has under/over _ steps? (cooking complexity/difficulty level)
-# What dish can I make for %? (breakfast, lunch, dinner)
+# What dish can I make for %? (breakfast, lunch, dinner, dessert)
 # bye
 
 from recipe import recipe_db
@@ -53,23 +53,5 @@ def recipe_for_event(matches: List[str]) -> List[str]:
     for recipe in recipe_db:
         if get_event(recipe) == matches[0]:
             result.append(get_name(recipe))
-    return result
-
-def title_by_year(matches: List[str]) -> List[str]:
-    """Finds all movies made in the passed in year
-
-    Args:
-        matches - a list of 1 string, just the year. Note that this year is passed as a
-            string and should be converted to an int
-
-    Returns:
-        a list of movie titles made in the passed in year
-    """
-    # ["1974"]
-    year = int(matches[0])
-    result = []
-    for movie in movie_db:
-        if get_year(movie) == year:
-            result.append(get_title(movie))
     return result
 
