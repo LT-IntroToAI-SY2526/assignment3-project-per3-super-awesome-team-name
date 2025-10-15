@@ -20,9 +20,9 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
          "Zest of 1/2th Lemon",
          "1 tablespoon lemon juice"
          ],
-         "2",
-         "120",
-         "3",
+         2,
+         120,
+         3,
          "Breakfast",
          "No Event"
     ),
@@ -44,9 +44,9 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
          "4 corn tortillas",
          "mexican crema or sour cream"
          ],
-         "1",
-         "30",
-         "8",
+         1,
+         30,
+         8,
          "Lunch",
          "No Event"
     ),
@@ -63,9 +63,9 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
          "Juice of 2 limes",
          "26 round rice paper sheets (16cm diameter)"
          ],
-         "5",
-         "30",
-         "5",
+         5,
+         30,
+         5,
          "Lunch",
          "No Event"
      ),
@@ -88,9 +88,9 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
           "1 x 750ml bottle red wine",
           "750ml beef stock"
          ],
-         "4",
-         "120",
-         "11",
+         4,
+         120,
+         11,
          "Dinner",
          "No Event"
      ),
@@ -111,20 +111,94 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
           "A few cracks of freshly ground black pepper",
           "Butter, for greasing"
          ],
-         "7",
-         "120",
-         "11",
+         7,
+         120,
+         11,
          "Dinner",
          "Christmas"
      ),
      (
-         "https://www.gordonramsay.com/gr/recipes/chickenthighswithbacongravy/"
+        "Holiday Lemon-Herb Chicken Thighs With A Crispy Bacon Gravy",
+        [
+            "8 each bone-in chicken thighs (about 3-4 pounds)", 
+            "Flaky sea salt",
+             "fresh cracked pepper",
+            "Olive oil",
+            "2-3 tablespoons all-purpose flour",
+            "pinch of chili flakes",
+            "1 lemon, zested",
+            "4 slices, thick cut bacon, sliced into 1/2 inch pieces",
+            "1/2 cup diced yellow onion",
+            "2 garlic cloves, chopped",
+            "1-12 ounce bottle of dry hard cider",
+            "2 cups warm chicken stock, divided",
+            "2 lemons, divided",
+            "3-4 sprigs of fresh thyme",
+            "2 sprigs of fresh rosemary",
+        ],
+        6, 
+        45,
+        4,
+        "dinner",
+        "Thanksgiving"
      ),
      (
-        "https://www.gordonramsay.com/gr/recipes/stickytoffee-pudding/"
+        "Individual Sticky Toffee Puddings",
+        [
+            "5 ounces dates, pits removed, roughly chopped (about ¾ cup)", 
+            "1/2 teaspoon baking soda",
+            "1/4 cup boiling water",
+            "3 tablespoons unslated butter, room temperature",
+            "6 tablespoons light brown sugar",
+            "1 egg",
+            "1/2 cup + 2 tablespoons all purpose flour",
+            "1/2 teaspoon baking powder",
+            "1/2 cup unsalted butter",
+            "1 cup packed brown sugar",
+            "2 tablespoons milk",
+            "2 tablespoobs heavy cream",
+            "2 tablespoons corn syrup",
+            "Tiny pinch kosher salt",
+            "2 tablespoons bourbon",
+            "freshly whipped cream"
+        ],
+        6,
+        45,
+        6,
+        "dessert",
+        "Christmas"
       ),
       (
-        "https://www.gordonramsay.com/gr/recipes/lobsterblt/"  
+        "Maine Lobster BLT from Ramsay Around The World",
+        [
+            "1/2 cup unsalted butter, room temperture",
+            "2 tablespoons edible seaweed, rehydrated and chopped",
+            "2 tablespoons tarragon leaves, finely chopped",
+            "zest of 1 lemon",
+            "1 teaspoon minced garlic",
+            "1 teaspoon smoked paprika",
+            "1/4 teaspoon salt",
+            "4 sliced extra thick-cut bacon",
+            "kosher salt",
+            "freshly craked black pepper",
+            "unsalted butter",
+            "2 eggs",
+            "smoked paprika",
+            "1 whole lobster, blacked and meat removed in-tact",
+            "1/2 avacado, pit removed",
+            "1 yellow onion, sliced into 1/2-inc rounds",
+            "2 slicced artisanal bread",
+            "1 tablespoon mayonnaise",
+            "2 tablespoons fresh or rehydrated wakae seaweed, squeezed dry then finely chopped",
+            "1 lemon, for zesting",
+            "1 large heriloom tomato, sliced into 1/2-inch rounds",
+            "baby gem, lettuce leaves"
+        ],
+        1,
+        30, 
+        14,
+        "lunch",
+        "no event"
       ),
       (
           "https://www.gordonramsay.com/gr/recipes/simplemarinara/"
