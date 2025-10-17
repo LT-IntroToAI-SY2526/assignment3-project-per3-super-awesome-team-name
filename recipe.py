@@ -1,5 +1,5 @@
 #This line is like importing tools from a toolbox. It's bringing in special helpers called List and Tuple from Python's typing section.
-from typing import List, Tuple
+from typing import List, Tuple # a Tuple is immuatable
 
 #recipe's chosen from Gordan Ramsay's Ultimate Cookery Course https://www.gordonramsay.com/gr/recipes/brietoastwithberries/
 
@@ -139,7 +139,7 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
         6, 
         45,
         4,
-        "dinner",
+        "Dinner",
         "Thanksgiving"
      ),
      (
@@ -165,7 +165,7 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
         6,
         45,
         6,
-        "dessert",
+        "Dessert",
         "Christmas"
       ),
       (
@@ -197,13 +197,56 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
         1,
         30, 
         14,
-        "lunch",
-        "no event"
+        "Lunch",
+        "No event"
       ),
       (
-          "https://www.gordonramsay.com/gr/recipes/simplemarinara/"
+          "Gordon's Simple Marinara at Home",
+          [
+              "2 28 Oz Cans of Peeled San Marazano Tomatoes", 
+              "1 Large Yellow Onion, Julienned ",
+              "6 Garlic Gloves, Sliced Thin",
+              "6 Basil Leafs, Torn ",
+              "2 Tablespoons Tomato Paste",
+              "1 Cup Red Wine",
+              "1/8 Cup Olive Oil",
+              "Salt & Pepper"
+          ],
+          4,
+          90,
+          12,
+          "Lunch",
+          "No event"
       ),
       (
-          "https://www.gordonramsay.com/gr/recipes/steak-with-chimichurri-and-potatoes-from-ramsay-in-10-live/"
+          "Steak with Chimichurri and Potatoes from Ramsay in 10 Live",
+          [
+              "180g-200g Sirloin Steak",
+              "Olive Oil", 
+              "10 Potaoes thinly sliced",
+              "6 Whole Mushrooms",
+              "4-5 Small Vine Ripe Tomatoes",
+              "3-4 Spring Onions Chopped",
+              "1 1/2 Garlic Cloves",
+              "1 Red Onion, Thinly sliced",
+              "Handful of Parsley",
+              "Salt",
+              "Pepper",
+              "Butter",
+              "1 1/2 Cloves of Garlic",
+              "handful of Mint",
+              "handful of Basil",
+              "handful of Parsley",
+              "1 Chili, sliced",
+              "2 Tablespoons of Olive Oil",
+              "1 Tablespoon Red Wine Vinegar",
+              "1 Tablespoon of Honey",
+              "Lemon Zest"
+          ],
+          2,
+          30,
+          10,
+          "Dinner",
+          "No event"
       )
 ]
