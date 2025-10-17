@@ -1,6 +1,5 @@
 # THINGS TO ASK THE RECIPE CHAT BOT:
 # What should I make for % ? (event)
-# How can I make %? (specific recipe name)
 # What can I make that includes %? (specific ingredient)
 # What dish had a serving size of _? (serving size)
 # What dish has a cooking time under/over _? (Cooking time)
@@ -28,14 +27,18 @@ def get_size(recipe: Tuple[str, List[str], int, int, int, str, str]) -> int:
 def get_time(recipe: Tuple[str, List[str], int, int, int, str, str]) -> int:
     return recipe[3]
 
+
 def get_steps(recipe: Tuple[str, List[str], int, int, int, str, str]) -> int:
     return recipe[4]
+
 
 def get_mealType(recipe: Tuple[str, List[str], int, int, int, str, str]) -> str:
     return recipe[5]
 
+
 def get_event(recipe: Tuple[str, List[str], int, int, int, str, str]) -> str:
     return recipe[6]
+
 
 #functions based on the questions
 def recipe_for_event(matches: List[str]) -> List[str]:
@@ -47,7 +50,7 @@ def recipe_for_event(matches: List[str]) -> List[str]:
     Returns:
         a list of recipe names made for the specific event
     """
-    # ["thanksgiving"]
+    # ["Thanksgiving"]
 
     result = []
     for recipe in recipe_db:
