@@ -138,3 +138,127 @@ def type_of_meal(matches:List[str]) -> List[str]:
         if get_mealType(recipe) == matches[0]:
             result.append(get_name(recipe))
     return result
+
+# dummy argument is ignored and doesn't matter
+def bye_action(dummy: List[str]) -> None:
+    raise KeyboardInterrupt
+
+
+# The pattern-action list for the natural language query system A list of tuples of
+# pattern and action It must be declared here, after all of the function definitions
+pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
+    (str.split("What should I make for % "), recipe_for_event),
+    (str.split("What can I make that includes %"), ingredient_to_recipe),
+    (str.split("What dish had a serving size of _"), serving_size),
+    (str.split("What dish has a cooking time of _ minutes"), cook_time),
+
+    (str.split("What dish has _ steps"), num_steps),
+    (str.split("What dish can I make for %"), type_of_meal),
+
+    (["bye"], bye_action),
+]
+# What dish has a cooking time of _ minutes? (Cooking time)
+# What dish has _ steps? (cooking complexity/difficulty level)
+# What dish can I make for %? (breakfast, lunch, dinner, dessert)
+
+def search_pa_list(src: List[str]) -> List[str]:
+    """Takes source, finds matching pattern and calls corresponding action. If it finds
+    a match but has no answers it returns ["No answers"]. If it finds no match it
+    returns ["I don't understand"].
+
+    Args:
+        source - a phrase represented as a list of words (strings)
+
+    Returns:
+        a list of answers. Will be ["I don't understand"] if it finds no matches and
+        ["No answers"] if it finds a match but no answers
+    """
+    for pat, act in pa_list:
+        mat = match(pat, src)
+
+        if mat is not None:
+            answer = act(mat)
+            return answer if answer else ["No answers"]
+        
+    return ["I don't understand"]
+
+def query_loop() -> None:
+    """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
+    characters and exit gracefully.
+    """
+    print("Welcome to the movie database!\n")
+    while True:
+        try:
+            print()
+            query = input("Your query? ").replace("?", "").lower().split()
+            answers = search_pa_list(query)
+            for ans in answers:
+                print(ans)
+
+        except (KeyboardInterrupt, EOFError):
+            break
+    print("\nSo Long!\n")
+
+
+#asserts
+if __name__ == "__main__":
+    assert isinstance(title_by_year(["1974"]), list), "title_by_year not returning a list"
+    assert sorted(title_by_year(["1974"])) == sorted(
+        ["amarcord", "chinatown"]
+    ), "failed title_by_year test"
+    assert isinstance(title_by_year_range(["1970", "1972"]), list), "title_by_year_range not returning a list"
+    assert sorted(title_by_year_range(["1970", "1972"])) == sorted(
+        ["the godfather", "johnny got his gun"]
+    ), "failed title_by_year_range test"
+    assert isinstance(title_before_year(["1950"]), list), "title_before_year not returning a list"
+    assert sorted(title_before_year(["1950"])) == sorted(
+        ["casablanca", "citizen kane", "gone with the wind", "metropolis"]
+    ), "failed title_before_year test"
+    assert isinstance(title_after_year(["1990"]), list), "title_after_year not returning a list"
+    assert sorted(title_after_year(["1990"])) == sorted(
+        ["boyz n the hood", "dead again", "the crying game", "flirting", "malcolm x", "Coraline"]
+    ), "failed title_after_year test"
+    assert isinstance(director_by_title(["jaws"]), list), "director_by_title not returning a list"
+    assert sorted(director_by_title(["jaws"])) == sorted(
+        ["steven spielberg"]
+    ), "failed director_by_title test"
+    assert isinstance(title_by_director(["steven spielberg"]), list), "title_by_director not returning a list"
+    assert sorted(title_by_director(["steven spielberg"])) == sorted(
+        ["jaws"]
+    ), "failed title_by_director test"
+    assert isinstance(actors_by_title(["jaws"]), list), "actors_by_title not returning a list"
+    assert sorted(actors_by_title(["jaws"])) == sorted(
+        [
+            "roy scheider",
+            "robert shaw",
+            "richard dreyfuss",
+            "lorraine gary",
+            "murray hamilton",
+        ]
+    ), "failed actors_by_title test"
+    assert sorted(actors_by_title(["movie not in database"])) == [], "failed actors_by_title not in database test"
+    assert isinstance(year_by_title(["jaws"]), list), "year_by_title not returning a list"
+    assert sorted(year_by_title(["jaws"])) == sorted(
+        [1975]
+    ), "failed year_by_title test"
+    assert isinstance(title_by_actor(["orson welles"]), list), "title_by_actor not returning a list"
+    assert sorted(title_by_actor(["orson welles"])) == sorted(
+        ["citizen kane", "othello"]
+    ), "failed title_by_actor test"
+    
+    
+    assert sorted(search_pa_list(["hi", "there"])) == sorted(
+        ["I don't understand"]
+    ), "failed search_pa_list test 1"
+    assert sorted(search_pa_list(["who", "directed", "jaws"])) == sorted(
+        ["steven spielberg"]
+    ), "failed search_pa_list test 2"
+    assert sorted(
+        search_pa_list(["what", "movies", "were", "made", "in", "2020"])
+    ) == sorted(["No answers"]), "failed search_pa_list test 3"
+
+    #my personal assert
+    assert sorted(title_by_actorCount(["9"])) == sorted(["casablanca"]), "failed title_by_actorCount test"
+
+
+    print("All tests passed!")
