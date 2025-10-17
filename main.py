@@ -1,6 +1,5 @@
 # THINGS TO ASK THE RECIPE CHAT BOT:
 # What should I make for % ? (event)
-# How can I make %? (specific recipe name)
 # What can I make that includes %? (specific ingredient)
 # What dish had a serving size of _? (serving size)
 # What dish has a cooking time under/over _? (Cooking time)
@@ -55,3 +54,16 @@ def recipe_for_event(matches: List[str]) -> List[str]:
             result.append(get_name(recipe))
     return result
 
+def ingredient_to_recipe(matches: List[str]) -> List[str]:
+    """After getting the input of a specific recipe name
+    
+    Args:
+        matches - a list of 1 string, just the ingredient .
+        
+    Returns:
+            a list of recipes that use that ingredient"""
+    result = []
+    for recipe in recipe_db:
+        if get_ingredients(recipe) == matches[0]:
+            result.append(get_name(recipe))
+    return result
