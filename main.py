@@ -148,7 +148,7 @@ def bye_action(dummy: List[str]) -> None:
 # The pattern-action list for the natural language query system A list of tuples of
 # pattern and action It must be declared here, after all of the function definitions
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-    (str.split("What should I make for % "), recipe_for_event),
+    (str.split("What should I make for %"), recipe_for_event),
     (str.split("What can I make that includes %"), ingredient_to_recipe),
     (str.split("What dish had a serving size of _"), serving_size),
     (str.split("What dish has a cooking time of _ minutes"), cook_time),
@@ -187,7 +187,7 @@ def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
     characters and exit gracefully.
     """
-    print("Welcome to the movie database!\n")
+    print("Welcome to the recipe database!\n")
     while True:
         try:
             print()
@@ -236,11 +236,11 @@ if __name__ == "__main__":
     assert sorted(search_pa_list(["hi", "there"])) == sorted(
         ["I don't understand"]
     ), "failed search_pa_list test 1"
-    # assert sorted(search_pa_list(["what", "should", "i", "make", "for",  "Thanksgiving"])) == sorted(
-    #     ["Holiday Lemon-Herb Chicken Thighs With A Crispy Bacon Gravy"]
-    # ), "failed search_pa_list test 2"
-    # assert sorted(
-    #     search_pa_list(["what", "has", "table"])
-    # ) == sorted(["No answers"]), "failed search_pa_list test 3"
+    assert sorted(search_pa_list(["what", "should", "i", "make", "for",  "Thanksgiving"])) == sorted(
+        ["Holiday Lemon-Herb Chicken Thighs With A Crispy Bacon Gravy"]
+    ), "failed search_pa_list test 2"
+    assert sorted(
+        search_pa_list(["what", "dish", "has", "20", "steps"])
+    ) == sorted(["No answers"]), "failed search_pa_list test 3"
 
     print("All tests passed!")
