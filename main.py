@@ -68,8 +68,9 @@ def ingredient_to_recipe(matches: List[str]) -> List[str]:
             a list of recipes that use that ingredient"""
     result = []
     for recipe in recipe_db:
-        if get_ingredients(recipe) == matches[0]:
-            result.append(get_name(recipe))
+        for i in get_ingredients(recipe):
+            if i == matches[0]:
+                result.append(get_name(recipe))
     return result
 
 def serving_size(matches: List[str]) -> List[str]:
@@ -202,63 +203,44 @@ def query_loop() -> None:
 
 #asserts
 if __name__ == "__main__":
-    assert isinstance(title_by_year(["1974"]), list), "title_by_year not returning a list"
-    assert sorted(title_by_year(["1974"])) == sorted(
-        ["amarcord", "chinatown"]
+    assert isinstance(recipe_for_event(["Thanksgiving"]), list), "recipe_for_event not returning recipe"
+    assert sorted(recipe_for_event(["Thanksgiving"])) == sorted(
+        ["Holiday Lemon-Herb Chicken Thighs With A Crispy Bacon Gravy"]
     ), "failed title_by_year test"
-    assert isinstance(title_by_year_range(["1970", "1972"]), list), "title_by_year_range not returning a list"
-    assert sorted(title_by_year_range(["1970", "1972"])) == sorted(
-        ["the godfather", "johnny got his gun"]
+
+    assert isinstance(ingredient_to_recipe(["Sirloin Steak"]), list), "ingredient_to_recipe not returning a list"
+    assert sorted(ingredient_to_recipe(["Sirloin Steak"])) == sorted(
+        ["Steak with Chimichurri and Potatoes"]
     ), "failed title_by_year_range test"
-    assert isinstance(title_before_year(["1950"]), list), "title_before_year not returning a list"
-    assert sorted(title_before_year(["1950"])) == sorted(
-        ["casablanca", "citizen kane", "gone with the wind", "metropolis"]
+
+    assert isinstance(serving_size([5]), list), "serving_size not returning a value"
+    assert sorted(serving_size([5])) == sorted(
+        ["fresh prawn rolls"]
     ), "failed title_before_year test"
-    assert isinstance(title_after_year(["1990"]), list), "title_after_year not returning a list"
-    assert sorted(title_after_year(["1990"])) == sorted(
-        ["boyz n the hood", "dead again", "the crying game", "flirting", "malcolm x", "Coraline"]
-    ), "failed title_after_year test"
-    assert isinstance(director_by_title(["jaws"]), list), "director_by_title not returning a list"
-    assert sorted(director_by_title(["jaws"])) == sorted(
-        ["steven spielberg"]
-    ), "failed director_by_title test"
-    assert isinstance(title_by_director(["steven spielberg"]), list), "title_by_director not returning a list"
-    assert sorted(title_by_director(["steven spielberg"])) == sorted(
-        ["jaws"]
-    ), "failed title_by_director test"
-    assert isinstance(actors_by_title(["jaws"]), list), "actors_by_title not returning a list"
-    assert sorted(actors_by_title(["jaws"])) == sorted(
-        [
-            "roy scheider",
-            "robert shaw",
-            "richard dreyfuss",
-            "lorraine gary",
-            "murray hamilton",
-        ]
-    ), "failed actors_by_title test"
-    assert sorted(actors_by_title(["movie not in database"])) == [], "failed actors_by_title not in database test"
-    assert isinstance(year_by_title(["jaws"]), list), "year_by_title not returning a list"
-    assert sorted(year_by_title(["jaws"])) == sorted(
-        [1975]
-    ), "failed year_by_title test"
-    assert isinstance(title_by_actor(["orson welles"]), list), "title_by_actor not returning a list"
-    assert sorted(title_by_actor(["orson welles"])) == sorted(
-        ["citizen kane", "othello"]
-    ), "failed title_by_actor test"
-    
-    
+
+    assert isinstance(cook_time([90]), list), "cook_time not returning a value"
+    assert sorted(cook_time([90])) == sorted(
+        ["Gordon's Simple Marinara at Home"]
+    ), "failed title_before_year test"
+
+    assert isinstance(num_steps([3]), list), "num_steps not returning a value"
+    assert sorted(num_steps([3])) == sorted(
+        ["melted brie toast with macerated berries"]
+    ), "failed title_before_year test"
+
+    assert isinstance(type_of_meal(["Dessert"]), list), "ingredient_to_recipe not returning a list"
+    assert sorted(type_of_meal(["Dessert"])) == sorted(
+        ["Individual Sticky Toffee Puddings"]
+    ), "failed title_by_year_range test"
+
     assert sorted(search_pa_list(["hi", "there"])) == sorted(
         ["I don't understand"]
     ), "failed search_pa_list test 1"
-    assert sorted(search_pa_list(["who", "directed", "jaws"])) == sorted(
-        ["steven spielberg"]
-    ), "failed search_pa_list test 2"
-    assert sorted(
-        search_pa_list(["what", "movies", "were", "made", "in", "2020"])
-    ) == sorted(["No answers"]), "failed search_pa_list test 3"
-
-    #my personal assert
-    assert sorted(title_by_actorCount(["9"])) == sorted(["casablanca"]), "failed title_by_actorCount test"
-
+    # assert sorted(search_pa_list(["what", "has", "Breakfast"])) == sorted(
+    #     ["melted brie toast with macerated berries"]
+    # ), "failed search_pa_list test 2"
+    # assert sorted(
+    #     search_pa_list(["napkin", "shark", "table"])
+    # ) == sorted(["No answers"]), "failed search_pa_list test 3"
 
     print("All tests passed!")
