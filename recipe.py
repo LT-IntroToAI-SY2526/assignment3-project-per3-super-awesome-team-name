@@ -219,9 +219,9 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
           "No event"
       ),
       (
-          "Steak with Chimichurri and Potatoes from Ramsay in 10 Live",
+          "Steak with Chimichurri and Potatoes",
           [
-              "180g-200g Sirloin Steak",
+              "Sirloin Steak",
               "Olive Oil", 
               "10 Potaoes thinly sliced",
               "6 Whole Mushrooms",

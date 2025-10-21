@@ -236,11 +236,11 @@ if __name__ == "__main__":
     assert sorted(search_pa_list(["hi", "there"])) == sorted(
         ["I don't understand"]
     ), "failed search_pa_list test 1"
-    assert sorted(search_pa_list(["what", "should", "i", "make", "for",  "Thanksgiving"])) == sorted(
+    assert sorted(search_pa_list(["What", "should", "I", "make", "for",  "Thanksgiving"])) == sorted(
         ["Holiday Lemon-Herb Chicken Thighs With A Crispy Bacon Gravy"]
     ), "failed search_pa_list test 2"
     assert sorted(
-        search_pa_list(["what", "dish", "has", "20", "steps"])
+        search_pa_list(["What", "dish", "has", "20", "steps"])
     ) == sorted(["No answers"]), "failed search_pa_list test 3"
 
     print("All tests passed!")
