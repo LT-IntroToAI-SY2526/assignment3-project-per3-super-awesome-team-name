@@ -147,20 +147,36 @@ def bye_action(dummy: List[str]) -> None:
 
 # The pattern-action list for the natural language query system A list of tuples of
 # pattern and action It must be declared here, after all of the function definitions
-pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-    (str.split("What should I make for %"), recipe_for_event),
-    (str.split("What can I make that includes %"), ingredient_to_recipe),
-    (str.split("What dish had a serving size of _"), serving_size),
-    (str.split("What dish has a cooking time of _ minutes"), cook_time),
 
-    (str.split("What dish has _ steps"), num_steps),
-    (str.split("What dish can I make for %"), type_of_meal),
+def query_loop() -> None:
+    """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
+    characters and exit gracefully.
+    """
+    print("Welcome to the recipe database!\n")
+    while True:
+        try:
+            print()
+            query = input("Your query? ").replace("?", "").lower().split()
+            answers = search_pa_list(query)
+            for ans in answers:
+                print(ans)
+
+        except (KeyboardInterrupt, EOFError):
+            break
+    print("\nSo Long!\n")
+
+
+pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
+    (str.split("what should I make for _"), recipe_for_event),
+    (str.split("what can I make that includes %"), ingredient_to_recipe),
+    (str.split("what dish had a serving size of _"), serving_size),
+    (str.split("what dish has a cooking time of _ minutes"), cook_time),
+
+    (str.split("what dish has _ steps"), num_steps),
+    (str.split("what dish can I make for %"), type_of_meal),
 
     (["bye"], bye_action),
 ]
-# What dish has a cooking time of _ minutes? (Cooking time)
-# What dish has _ steps? (cooking complexity/difficulty level)
-# What dish can I make for %? (breakfast, lunch, dinner, dessert)
 
 def search_pa_list(src: List[str]) -> List[str]:
     """Takes source, finds matching pattern and calls corresponding action. If it finds
@@ -182,23 +198,6 @@ def search_pa_list(src: List[str]) -> List[str]:
             return answer if answer else ["No answers"]
         
     return ["I don't understand"]
-
-def query_loop() -> None:
-    """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
-    characters and exit gracefully.
-    """
-    print("Welcome to the recipe database!\n")
-    while True:
-        try:
-            print()
-            query = input("Your query? ").replace("?", "").lower().split()
-            answers = search_pa_list(query)
-            for ans in answers:
-                print(ans)
-
-        except (KeyboardInterrupt, EOFError):
-            break
-    print("\nSo Long!\n")
 
 
 #asserts
@@ -236,11 +235,13 @@ if __name__ == "__main__":
     assert sorted(search_pa_list(["hi", "there"])) == sorted(
         ["I don't understand"]
     ), "failed search_pa_list test 1"
-    assert sorted(search_pa_list(["What", "should", "I", "make", "for",  "Thanksgiving"])) == sorted(
+    assert sorted(search_pa_list(["what", "should", "I", "make", "for",  "Thanksgiving"])) == sorted(
         ["Holiday Lemon-Herb Chicken Thighs With A Crispy Bacon Gravy"]
     ), "failed search_pa_list test 2"
     assert sorted(
-        search_pa_list(["What", "dish", "has", "20", "steps"])
+        search_pa_list(["what", "dish", "has", "20", "steps"])
     ) == sorted(["No answers"]), "failed search_pa_list test 3"
 
     print("All tests passed!")
+
+query_loop()
