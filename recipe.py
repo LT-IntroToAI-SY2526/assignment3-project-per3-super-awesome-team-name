@@ -114,8 +114,8 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
          7,
          120,
          11,
-         "Dinner",
-         "Christmas"
+         "dinner",
+         "christmas"
      ),
      (
         "Holiday Lemon-Herb Chicken Thighs With A Crispy Bacon Gravy",
@@ -139,8 +139,8 @@ recipe_db: List[Tuple[str, List[str], int, int, int, str, str]] = [
         6, 
         45,
         4,
-        "Dinner",
-        "Thanksgiving"
+        "dinner",
+        "thanksgiving"
      ),
      (
         "Individual Sticky Toffee Puddings",
